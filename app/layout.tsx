@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import { ThemeProvider } from "@/components/theme-provider"
 import './globals.css'
 
 export const metadata = {
@@ -16,10 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-background flex flex-col items-center text-foreground">
-        <Header/>
-        <main>
-          {children}
-        </main>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header/>
+          <main>
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   )
