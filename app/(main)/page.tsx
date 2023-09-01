@@ -10,9 +10,11 @@ export default function Index() {
 
   function fireToast()
   {
+    var today = new Date();
+
     toast({
-      title: "Scheduled: Catch up",
-      description: "Friday, February 10, 2023 at 5:57 PM",
+      title: "Reminder: Catch up",
+      description: today.toLocaleString(),
     })
   }
 
