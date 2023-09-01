@@ -2,8 +2,9 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import LogoutButton from './button-logout'
-import { SwitchMode } from './switch-mode';
+import { SwitchModeToggle } from './switch-mode-toggle';
 import { buttonVariants } from './ui/button';
+import React from 'react';
 
 export const dynamic = "force-dynamic";
 
@@ -24,9 +25,11 @@ export default async function Header() {
               </Link>
             </div>
             <div className="flex items-center gap-4">
-              {user?.email}
               {user ? (
-                  <LogoutButton />
+                  <React.Fragment>
+                    {user?.email}
+                    <LogoutButton />
+                  </React.Fragment>
               ) : (
                 <Link 
                   href="/login"
@@ -34,7 +37,7 @@ export default async function Header() {
                     Login
                 </Link>
               )}
-              <SwitchMode/>
+              <SwitchModeToggle/>
             </div>
         </div>
       </nav>

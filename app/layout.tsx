@@ -1,6 +1,6 @@
-import Header from '@/components/Header';
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/providers/theme-provider"
 import './globals.css'
+import { Toaster } from '@/components/ui/toaster';
 
 export const metadata = {
   title: 'My Website',
@@ -18,10 +18,8 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen bg-background flex flex-col items-center text-foreground">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header/>
-          <main>
-            {children}
-          </main>
+          {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
