@@ -9,7 +9,7 @@ export default function RootLayout({
   return (
     <React.Fragment>
         <Header/>
-        <main>
+        <main className="m-3">
             {children}
         </main>
     </React.Fragment>
