@@ -19,7 +19,7 @@ export default function ModelLogin() {
             <DialogHeader>
               <DialogTitle>Login</DialogTitle>
               <DialogDescription>
-                Make changes to your profile here. Click save when you're done.
+                Please fill in the below fields to either login or register.
               </DialogDescription>
             </DialogHeader>
             <LoginForm/>
