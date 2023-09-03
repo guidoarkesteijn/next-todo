@@ -1,9 +1,14 @@
+'use client'
+
 import Messages from './messages'
 import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
+  const router = useRouter()
+
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <form
@@ -41,6 +46,9 @@ export default function Login() {
         </Button>
         <Messages />
       </form>
+      <Button onClick={router.back} className='absolute top-5 left-5'>
+        Back
+      </Button>
     </div>
   )
 }

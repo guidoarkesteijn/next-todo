@@ -1,25 +1,25 @@
 'use client'
 
+import { BedIcon } from "lucide-react";
+import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
-
-export type Todo = {
-    id: string;
-    created_at: string,
-    title : string;
-    is_complete : boolean;
-    user_id : string;
-}
+import { Separator } from "./ui/separator";
 
 interface IProps {
     id: string;
-    created_at: string,
+    created_at: Date,
     title : string;
     is_complete : boolean;
-    user_id : string;
+    user_id : string | null;
 }
 
 export default function TodoItem(props : IProps) {
+    function clicked()
+    {
+        console.log("Clicked");
+    }
+
     return (
         <Card>
             <CardHeader>
@@ -27,7 +27,7 @@ export default function TodoItem(props : IProps) {
                     {props.title}
                 </CardTitle>
                 <CardDescription>
-                    {props.created_at}
+                    {props.created_at.toLocaleString()}
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -41,7 +41,9 @@ export default function TodoItem(props : IProps) {
             </div>
             </CardContent>
             <CardFooter>
-                {props.user_id}
+                <Button onClick={clicked} size="icon">
+                    <BedIcon/>
+                </Button>
             </CardFooter>
         </Card>
     );
