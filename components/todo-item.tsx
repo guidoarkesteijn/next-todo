@@ -4,7 +4,6 @@ import { BedIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
-import { Separator } from "./ui/separator";
 
 interface IProps {
     id: string;
@@ -40,11 +39,6 @@ export default function TodoItem(props : IProps) {
                 </label>
             </div>
             </CardContent>
-            <CardFooter>
-                <Button onClick={clicked} size="icon">
-                    <BedIcon/>
-                </Button>
-            </CardFooter>
         </Card>
     );
 }
