@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 import LogoutButton from './button-logout'
 import { SwitchModeToggle } from './switch-mode-toggle';
-import { Button, buttonVariants } from './ui/button';
+import { buttonVariants } from './ui/button';
 import React from 'react';
 import { Separator } from './ui/separator';
 import { Database } from '@/lib/database.types';
@@ -31,7 +31,7 @@ export default async function Header() {
               {user ? (
                   <React.Fragment>
                     <Avatar>
-                      <AvatarFallback className='bg-primary text-primary-foreground'>{user.email?.substring(0, 2).toUpperCase()}</AvatarFallback>
+                      <AvatarFallback className='bg-primary text-primary-foreground font-semibold'>{user.email?.substring(0, 2).toUpperCase()}</AvatarFallback>
                     </Avatar>
                     <LogoutButton />
                   </React.Fragment>
