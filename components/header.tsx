@@ -8,6 +8,7 @@ import React from 'react';
 import { Separator } from './ui/separator';
 import { Database } from '@/lib/database.types';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import ModelLogin from './dialogs/dialog-login';
 
 export const dynamic = "force-dynamic";
 
@@ -36,11 +37,7 @@ export default async function Header() {
                     <LogoutButton />
                   </React.Fragment>
               ) : (
-                <Link 
-                  href="/login"
-                  className={buttonVariants()}>
-                    Login
-                </Link>
+                <ModelLogin/>
               )}
               <SwitchModeToggle/>
             </div>
