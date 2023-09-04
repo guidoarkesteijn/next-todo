@@ -1,6 +1,5 @@
 'use client'
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Auth } from "@supabase/auth-ui-react"
 import { ThemeSupa, ViewType } from "@supabase/auth-ui-shared";
 import { useRouter, useSearchParams } from 'next/navigation'
