@@ -7,9 +7,7 @@ import { buttonVariants } from './ui/button';
 import React from 'react';
 import { Separator } from './ui/separator';
 import { Database } from '@/lib/database.types';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-
-export const dynamic = "force-dynamic";
+import { Avatar, AvatarFallback } from './ui/avatar';
 
 export default async function Header() {
   const supabase = createServerComponentClient<Database>({ cookies })
