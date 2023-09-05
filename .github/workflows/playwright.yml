@@ -7,7 +7,7 @@ on:
 jobs:
   test_setup:
     permissions:
-      actions: read
+      pull-requests: read
     name: Test setup
     runs-on: ubuntu-latest
     outputs:
