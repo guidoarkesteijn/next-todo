@@ -6,6 +6,8 @@ on:
 
 jobs:
   test_setup:
+    permissions:
+      actions: read
     name: Test setup
     runs-on: ubuntu-latest
     outputs:
