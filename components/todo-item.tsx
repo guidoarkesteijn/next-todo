@@ -14,10 +14,6 @@ interface IProps {
 }
 
 export default function TodoItem(props : IProps) {
-    function clicked()
-    {
-        console.log("Clicked");
-    }
 
     return (
         <Card>

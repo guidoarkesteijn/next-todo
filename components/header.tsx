@@ -7,9 +7,7 @@ import { buttonVariants } from './ui/button';
 import React from 'react';
 import { Separator } from './ui/separator';
 import { Database } from '@/lib/database.types';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-
-export const dynamic = "force-dynamic";
+import { Avatar, AvatarFallback } from './ui/avatar';
 
 export default async function Header() {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -36,11 +34,18 @@ export default async function Header() {
                     <LogoutButton />
                   </React.Fragment>
               ) : (
-                <Link 
+                <React.Fragment>
+                <Link
+                  href="/login?register=true"
+                  className={buttonVariants({variant: 'outline'})}>
+                Register
+                </Link>
+                <Link
                   href="/login"
                   className={buttonVariants()}>
-                    Login
+                Login
                 </Link>
+                </React.Fragment>
               )}
               <SwitchModeToggle/>
             </div>
