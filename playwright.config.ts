@@ -3,6 +3,6 @@ const config: PlaywrightTestConfig = {
     use: {
         baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || 'http://localhost:3000'
     },
-    testDir: "tests"
+    testDir: "e2e"
 }
 export default config
