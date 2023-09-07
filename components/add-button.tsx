@@ -1,7 +1,3 @@
-'use client'
-
-import { PlusIcon } from "lucide-react";
-import { Button } from "./ui/button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Todo from "@/models/Todo";
 import { useUser } from "@supabase/auth-helpers-react";

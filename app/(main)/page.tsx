@@ -19,7 +19,7 @@ export default function Index() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <section className="w-full flex flex-col items-center">
       <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tigh md:text-5xl lg:text-6xl">
         Welcome!</h1>
       <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
@@ -34,6 +34,6 @@ export default function Index() {
         Toast
         <LuAlarmCheck className="ml-2"/>
       </Button>
-    </div>
+    </section>
   )
 }
