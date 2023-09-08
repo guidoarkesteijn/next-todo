@@ -8,10 +8,14 @@ import { Button, buttonVariants } from "../ui/button";
 import { Input } from "../ui/input";
 import { Skeleton } from "../ui/skeleton";
 import React from "react";
+import { addTodo } from "@/actions/action-add-todo";
+import { useToast } from "../ui/use-toast";
 
 
 export default function DialogAddTodo() {
     const [isMounted, setMounted] = useState(false);
+    const [open, setOpen] = useState(false);
+    const { toast } = useToast();
 
     useEffect(() => {
         setMounted(true)
@@ -25,9 +29,26 @@ export default function DialogAddTodo() {
             </Skeleton>
         )
     }
+
+    async function addTodoElement(formdata : FormData) : Promise<void>
+    {
+        const title = formdata.get("title") as string;
+        const result = await addTodo(title);
+        if(!result)
+        {
+            
+            return;
+        }
+
+        toast({
+            title: "Todo Added",
+            description: "Title: " + title,
+        });
+        setOpen(false)
+    }
     
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>
                 <Button>
                     Add<PlusIcon/>
@@ -39,12 +60,12 @@ export default function DialogAddTodo() {
                         Add Todo
                     </DialogTitle>
                 </DialogHeader>
-                <div>
+                <form className="flex flex-col gap-3" action={addTodoElement}>
                     <h3 className="text-xl">Title</h3>
-                    <Input/>
+                    <Input name="title" required/>
                     <h3 className="text-xl"></h3>
-                    <Button>Send</Button>
-                </div>
+                    <Button>Add</Button>
+                </form>
             </DialogContent>
         </Dialog>
     );

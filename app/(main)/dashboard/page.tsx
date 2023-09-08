@@ -1,6 +1,6 @@
 import AddButton from "@/components/add-button"
 import DialogAddTodo from "@/components/dialogs/dialog-add-todo"
-import ServerComponent from "@/components/server-component/page"
+import TodoList from "@/components/server-component/page"
 import React from "react"
 
 export default async function Dashboard() {
@@ -14,7 +14,7 @@ export default async function Dashboard() {
                 </h1>
                 <DialogAddTodo />
             </div>
-            <ServerComponent/>
+            <TodoList/>
         </div>
     )
 }

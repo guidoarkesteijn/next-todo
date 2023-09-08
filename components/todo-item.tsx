@@ -15,6 +15,11 @@ interface IProps {
 export default function TodoItem(props : IProps) {
     const [completed, setCompleted] =  useState(props.is_complete);
   
+    async function completeElement() : Promise<void> 
+    {
+
+    }
+
     useLayoutEffect(() => {
         console.log(props.is_complete);
         if(completed != props.is_complete)
@@ -40,6 +45,9 @@ export default function TodoItem(props : IProps) {
             </CardHeader>
             <CardContent>
             <div className="flex items-center space-x-2">
+                <form action={completeElement}>
+
+                </form>
                 <Checkbox id="completed" checked={completed} onClick={handleChange}/>
                 <label
                     htmlFor="completed"
