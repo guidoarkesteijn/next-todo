@@ -12,7 +12,9 @@ export default defineConfig({
       "e2e/*",
     ],
     coverage: {
-      allowExternal:true
+      exclude: [
+        "components/ui/**"
+      ],
     }
   },
   resolve: {

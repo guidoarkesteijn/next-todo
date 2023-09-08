@@ -1,9 +1,8 @@
 'use client'
 
-import { BedIcon } from "lucide-react";
-import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 interface IProps {
     id: string;
@@ -14,6 +13,25 @@ interface IProps {
 }
 
 export default function TodoItem(props : IProps) {
+    const [completed, setCompleted] =  useState(props.is_complete);
+  
+    async function completeElement() : Promise<void> 
+    {
+
+    }
+
+    useLayoutEffect(() => {
+        console.log(props.is_complete);
+        if(completed != props.is_complete)
+        {
+            props.is_complete != props.is_complete;
+            console.log('The checkbox was toggled: ' + props.is_complete + " : " + completed);
+        }
+    },[completed])
+
+    const handleChange = () => {     
+        setCompleted(!completed);
+    };
 
     return (
         <Card>
@@ -27,9 +45,12 @@ export default function TodoItem(props : IProps) {
             </CardHeader>
             <CardContent>
             <div className="flex items-center space-x-2">
-                <Checkbox id="terms" checked={props.is_complete}/>
+                <form action={completeElement}>
+
+                </form>
+                <Checkbox id="completed" checked={completed} onClick={handleChange}/>
                 <label
-                    htmlFor="terms"
+                    htmlFor="completed"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Completed
                 </label>

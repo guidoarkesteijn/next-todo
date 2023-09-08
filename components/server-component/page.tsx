@@ -5,7 +5,7 @@ import TodoItem from '../todo-item'
 
 export const dynamic = 'force-dynamic'
 
-export default async function ServerComponent() {
+export default async function TodoList() {
 
   const supabase = createServerComponentClient<Database>({ cookies })
 
