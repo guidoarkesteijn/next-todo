@@ -10,8 +10,6 @@ export async function addTodo(title : string) : Promise<boolean> {
     const supabase = createServerActionClient<Database>({cookies});
     const user = await supabase.auth.getUser();
 
-    await new Promise((resolve) => setTimeout(resolve, 3000))
-
     if(user.data.user != null)
     {
         const userId = Guid.parse(user.data.user.id);
