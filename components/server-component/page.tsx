@@ -20,6 +20,7 @@ export default async function TodoList() {
           created_at={new Date(value.created_at)}
           is_complete={value.is_complete ?? false}
           user_id={value.user_id}
+          key={value.id}
         />
       ))}
     </div>

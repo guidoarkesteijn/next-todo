@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 interface IProps {
     id: string;
@@ -15,11 +15,6 @@ interface IProps {
 export default function TodoItem(props : IProps) {
     const [completed, setCompleted] =  useState(props.is_complete);
   
-    async function completeElement() : Promise<void> 
-    {
-
-    }
-
     useLayoutEffect(() => {
         console.log(props.is_complete);
         if(completed != props.is_complete)
@@ -45,12 +40,9 @@ export default function TodoItem(props : IProps) {
             </CardHeader>
             <CardContent>
             <div className="flex items-center space-x-2">
-                <form action={completeElement}>
-
-                </form>
-                <Checkbox id="completed" checked={completed} onClick={handleChange}/>
+                <Checkbox id={props.id} checked={completed} onClick={handleChange}/>
                 <label
-                    htmlFor="completed"
+                    htmlFor={props.id}
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Completed
                 </label>
