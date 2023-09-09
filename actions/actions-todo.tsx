@@ -6,7 +6,6 @@ import { Guid } from "guid-typescript";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-
 export async function addTodo(title : string) : Promise<boolean>
 {
     const supabase = createServerActionClient<Database>({cookies});
@@ -18,38 +17,50 @@ export async function addTodo(title : string) : Promise<boolean>
 
         const todo : Todo = new Todo(title as string, userId);
 
-        const { error} = await supabase.from('todos').insert(todo.toTodo()).select().single();
-
-        if(error){
-            return false;
-        }
+        const { error} = await supabase
+            .from("todos")
+            .insert(todo.toTodo())
+            .select()
+            .single();
 
         revalidatePath('/dashboard');
-        return true;
+
+        if(error)
+        {
+            console.log(error);
+        }
+
+        return error == null;
     }
 
     return false;
 }
 
-export async function deleteTodo(id : string) : Promise<void>
+export async function deleteTodo(id : string) : Promise<boolean>
 {
     const supabase = createServerActionClient<Database>({cookies});
     const user = await supabase.auth.getUser();
 
     if(user.data.user)
     {
-        const { error } = await supabase
+        const {error} = await supabase
             .from("todos")
             .delete()
-            .eq("id", id)
-
-        console.log(error);
+            .eq("id", id);
 
         revalidatePath('/dashboard');
+
+        if(error)
+        {
+            console.log(error);
+        }
+        return error == null;
     }
+
+    return false;
 }
 
-export async function completeTodo(id : string, value : boolean) : Promise<void>
+export async function completeTodo(id : string, value : boolean) : Promise<boolean>
 {
     const supabase = createServerActionClient<Database>({cookies});
     const user = await supabase.auth.getUser();
@@ -59,10 +70,16 @@ export async function completeTodo(id : string, value : boolean) : Promise<void>
         const { error } = await supabase
             .from("todos")
             .update({is_complete: value})
-            .eq("id", id)
-
-        console.log(error);
+            .eq("id", id);
 
         revalidatePath('/dashboard');
+
+        if(error)
+        {
+            console.log(error);
+        }
+        return error == null;
     }
+
+    return false;
 }

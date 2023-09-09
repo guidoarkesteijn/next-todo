@@ -1,12 +1,12 @@
 'use client'
 
-import { Guid } from "guid-typescript";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
-import { experimental_useOptimistic, useState, useTransition } from "react";
+import { experimental_useOptimistic as useOptimistic, useTransition } from "react";
 import { Button } from "../ui/button";
-import { LuTrash } from "react-icons/lu";
 import { completeTodo, deleteTodo } from "@/actions/actions-todo";
+import { LucideLoader, LucideTrash } from "lucide-react";
+import { useToast } from "../ui/use-toast";
 
 interface IProps {
     id: string;
@@ -17,20 +17,44 @@ interface IProps {
 }
 
 export default function TodoItem(props : IProps) {
-    const [isPending, startTransition] = useTransition();
+    const {toast} = useToast();
+    const [optimisticComplete, toggleOptimisticComplete] = useOptimistic(
+        props.is_complete || false,
+        (state, l) => state = !state
+    );
+    const [optimisticDelete, setOptimisticDelete] = useOptimistic(
+        false,
+        (state, l) => state = true
+    )
 
-    function deleteElement() : void
+    async function deleteElement()
     {
-        startTransition(() => {
-            deleteTodo(props.id);
-        })
+        setOptimisticDelete(true);
+        const success = await deleteTodo(props.id);
+
+        if(!success)
+        {
+            toast({
+                title: "Failed to delete",
+                description: props.title,
+                variant: "destructive"
+            })
+        }
     }
 
-    function changeComplete()
+    async function changeComplete()
     {
-        startTransition(() => {
-            completeTodo(props.id, !props.is_complete);
-        });
+        toggleOptimisticComplete(!props.is_complete)
+        const success = await completeTodo(props.id, !optimisticComplete); // Call the server action
+
+        if(!success)
+        {
+            toast({
+                title: "Failed to toggle complete",
+                description: props.title,
+                variant: "destructive"
+            })
+        }
     }
 
     return (
@@ -38,8 +62,8 @@ export default function TodoItem(props : IProps) {
             <CardHeader>
                 <CardTitle className="flex justify-between gap-3">
                     {props.title}
-                    <Button onClick={deleteElement} variant="destructive">
-                        <LuTrash/>
+                    <Button disabled={optimisticDelete} onClick={deleteElement} variant="destructive" size="icon">
+                        {optimisticDelete ? <LucideLoader/> : <LucideTrash/>}
                     </Button>
                 </CardTitle>
                 <CardDescription>
@@ -48,7 +72,7 @@ export default function TodoItem(props : IProps) {
             </CardHeader>
             <CardContent>
             <div className="flex items-center space-x-2">
-                <Checkbox id={props.id} checked={props.is_complete} onClick={changeComplete}/>
+                <Checkbox id={props.id} checked={optimisticComplete} onClick={changeComplete}/>
                 <label
                     htmlFor={props.id}
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">

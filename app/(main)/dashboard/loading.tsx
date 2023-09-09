@@ -1,9 +1,10 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import { Guid } from "guid-typescript";
 
 export default function Loading() {
     const myButtons = ["", "", ""];
     return <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>    {
       myButtons.map((myButton, index) => 
-        <Skeleton className={"w-[200px] h-[100px] rounded-2xl"} />)
+        <Skeleton key={Guid.create().toString()} className={"w-[200px] h-[100px] rounded-2xl"} />)
     }</div>;
 }

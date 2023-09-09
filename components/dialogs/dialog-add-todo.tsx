@@ -2,8 +2,8 @@
 
 import { DialogDescription, DialogTrigger } from "@radix-ui/react-dialog";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
-import { PlusIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { LucideLoader, LucidePlus, PlusIcon } from "lucide-react";
+import { experimental_useOptimistic, useEffect, useState } from "react";
 import { Button, buttonVariants } from "../ui/button";
 import { Input } from "../ui/input";
 import { Skeleton } from "../ui/skeleton";
@@ -11,14 +11,20 @@ import React from "react";
 import { addTodo } from "@/actions/actions-todo";
 import { useToast } from "../ui/use-toast";
 
-
 export default function DialogAddTodo() {
     const [isMounted, setMounted] = useState(false);
     const [open, setOpen] = useState(false);
     const { toast } = useToast();
+    const [optimisticAdd, setOptimisticAdd] = experimental_useOptimistic(
+        false,
+        (state, value : boolean) => state = value
+    );
 
     useEffect(() => {
-        setMounted(true)
+        if(!isMounted)
+        {
+            setMounted(true)
+        }
     });
 
     if(!isMounted)
@@ -33,10 +39,13 @@ export default function DialogAddTodo() {
     async function addTodoElement(formdata : FormData) : Promise<void>
     {
         const title = formdata.get("title") as string;
+
+        setOptimisticAdd(true);
+
         const result = await addTodo(title);
+
         if(!result)
         {
-            
             return;
         }
 
@@ -44,6 +53,7 @@ export default function DialogAddTodo() {
             title: "Todo Added",
             description: "Title: " + title,
         });
+
         setOpen(false)
     }
     
@@ -62,7 +72,15 @@ export default function DialogAddTodo() {
                     <h3 className="text-xl">Title</h3>
                     <Input name="title" required/>
                     <h3 className="text-xl"></h3>
-                    <Button>Add</Button>
+                    <Button disabled={optimisticAdd}>
+                        { optimisticAdd ? 
+                        <>
+                            <LucideLoader/>
+                        </> :
+                        <>
+                            Add <LucidePlus/>
+                        </>}
+                    </Button>
                 </form>
             </DialogContent>
         </Dialog>

@@ -2,7 +2,7 @@
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { LuAlarmCheck, LuArrowRight } from "react-icons/lu";
+import { LucideAlarmClock, LucideArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function Index() {
@@ -27,12 +27,12 @@ export default function Index() {
       <Link href="/login"
           className={buttonVariants() + " mb-3"}>
           Learn more 
-          <LuArrowRight/>
+          <LucideArrowRight/>
       </Link>
       <Button
         onClick={fireToast}>
         Toast
-        <LuAlarmCheck className="ml-2"/>
+        <LucideAlarmClock className="ml-2"/>
       </Button>
     </section>
   )
