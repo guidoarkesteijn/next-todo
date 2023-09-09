@@ -49,10 +49,8 @@ export default function DialogAddTodo() {
     
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger>
-                <Button>
-                    Add<PlusIcon/>
-                </Button>
+            <DialogTrigger className={buttonVariants({variant:"default"})}>
+                Add<PlusIcon/>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
