@@ -54,8 +54,6 @@ export async function completeTodo(id : string, value : boolean) : Promise<void>
     const supabase = createServerActionClient<Database>({cookies});
     const user = await supabase.auth.getUser();
 
-    console.log("update: " + id + " : " + value);
-
     if(user.data.user)
     {
         const { error } = await supabase
