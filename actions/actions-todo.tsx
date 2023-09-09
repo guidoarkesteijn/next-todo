@@ -6,10 +6,10 @@ import { Guid } from "guid-typescript";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-const supabase = createServerActionClient<Database>({cookies});
 
 export async function addTodo(title : string) : Promise<boolean>
 {
+    const supabase = createServerActionClient<Database>({cookies});
     const user = await supabase.auth.getUser();
 
     if(user.data.user != null)
@@ -33,13 +33,34 @@ export async function addTodo(title : string) : Promise<boolean>
 
 export async function deleteTodo(id : string) : Promise<void>
 {
+    const supabase = createServerActionClient<Database>({cookies});
     const user = await supabase.auth.getUser();
-    
+
     if(user.data.user)
     {
         const { error } = await supabase
             .from("todos")
             .delete()
+            .eq("id", id)
+
+        console.log(error);
+
+        revalidatePath('/dashboard');
+    }
+}
+
+export async function completeTodo(id : string, value : boolean) : Promise<void>
+{
+    const supabase = createServerActionClient<Database>({cookies});
+    const user = await supabase.auth.getUser();
+
+    console.log("update: " + id + " : " + value);
+
+    if(user.data.user)
+    {
+        const { error } = await supabase
+            .from("todos")
+            .update({is_complete: value})
             .eq("id", id)
 
         console.log(error);
