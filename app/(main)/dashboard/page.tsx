@@ -1,7 +1,8 @@
 import AddButton from "@/components/add-button"
 import DialogAddTodo from "@/components/dialogs/dialog-add-todo"
 import TodoList from "@/components/server-component/page"
-import React from "react"
+import React, { Suspense } from "react"
+import Loading from "./loading"
 
 export default async function Dashboard() {
     //await new Promise((resolve) => setTimeout(resolve, 3000))
@@ -14,7 +15,9 @@ export default async function Dashboard() {
                 </h1>
                 <DialogAddTodo />
             </div>
-            <TodoList/>
+            <Suspense fallback={<Loading/>}>
+                <TodoList/>
+            </Suspense>
         </div>
     )
 }

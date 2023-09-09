@@ -10,9 +10,9 @@ export default async function TodoList() {
   const supabase = createServerComponentClient<Database>({ cookies })
 
   const { data: todos } = await supabase.from('todos').select().order('title')
-
+  
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
       {todos != null && todos.map((value) => (
         <TodoItem
           id={value.id}

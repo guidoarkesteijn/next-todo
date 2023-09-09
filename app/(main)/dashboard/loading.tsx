@@ -1,6 +1,9 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Loading() {
-    // Or a custom loading skeleton component
-    return <Skeleton className="w-[100px] h-[20px] rounded-full" />
+    const myButtons = ["", "", ""];
+    return <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>    {
+      myButtons.map((myButton, index) => 
+        <Skeleton className={"w-[200px] h-[100px] rounded-2xl"} />)
+    }</div>;
 }
