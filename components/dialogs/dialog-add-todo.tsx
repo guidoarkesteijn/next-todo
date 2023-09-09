@@ -8,7 +8,7 @@ import { Button, buttonVariants } from "../ui/button";
 import { Input } from "../ui/input";
 import { Skeleton } from "../ui/skeleton";
 import React from "react";
-import { addTodo } from "@/actions/action-add-todo";
+import { addTodo } from "@/actions/actions-todo";
 import { useToast } from "../ui/use-toast";
 
 

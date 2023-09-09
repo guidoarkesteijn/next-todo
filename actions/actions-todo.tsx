@@ -6,8 +6,10 @@ import { Guid } from "guid-typescript";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export async function addTodo(title : string) : Promise<boolean> {
-    const supabase = createServerActionClient<Database>({cookies});
+const supabase = createServerActionClient<Database>({cookies});
+
+export async function addTodo(title : string) : Promise<boolean>
+{
     const user = await supabase.auth.getUser();
 
     if(user.data.user != null)
@@ -27,4 +29,21 @@ export async function addTodo(title : string) : Promise<boolean> {
     }
 
     return false;
+}
+
+export async function deleteTodo(id : string) : Promise<void>
+{
+    const user = await supabase.auth.getUser();
+    
+    if(user.data.user)
+    {
+        const { error } = await supabase
+            .from("todos")
+            .delete()
+            .eq("id", id)
+
+        console.log(error);
+
+        revalidatePath('/dashboard');
+    }
 }

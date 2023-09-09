@@ -1,8 +1,12 @@
 'use client'
 
+import { Guid } from "guid-typescript";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState, useTransition } from "react";
+import { Button } from "./ui/button";
+import { LuTrash } from "react-icons/lu";
+import { deleteTodo } from "@/actions/actions-todo";
 
 interface IProps {
     id: string;
@@ -14,7 +18,8 @@ interface IProps {
 
 export default function TodoItem(props : IProps) {
     const [completed, setCompleted] =  useState(props.is_complete);
-  
+    const [isPending, startTransition] = useTransition();
+
     useLayoutEffect(() => {
         console.log(props.is_complete);
         if(completed != props.is_complete)
@@ -31,8 +36,11 @@ export default function TodoItem(props : IProps) {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>
+                <CardTitle className="flex justify-between gap-3">
                     {props.title}
+                    <Button onClick={() => startTransition(() => deleteTodo(props.id))} variant="destructive">
+                        <LuTrash/>
+                    </Button>
                 </CardTitle>
                 <CardDescription>
                     {props.created_at.toLocaleString()}
