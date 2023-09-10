@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
-import { experimental_useOptimistic as useOptimistic, useTransition } from "react";
+import { experimental_useOptimistic as useOptimistic } from "react";
 import { Button } from "../ui/button";
 import { completeTodo, deleteTodo } from "@/actions/actions-todo";
 import { LucideLoader, LucideTrash } from "lucide-react";
