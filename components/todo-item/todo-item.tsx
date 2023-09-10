@@ -60,7 +60,7 @@ export default function TodoItem(props : IProps) {
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="flex justify-between gap-3">
+                <CardTitle className="flex justify-between gap-3 break-all">
                     {props.title}
                 <Button disabled={optimisticDelete} onClick={deleteElement} variant="destructive" size="icon">
                         {optimisticDelete ? <LucideLoader/> : <LucideTrash/>}

@@ -21,8 +21,8 @@ export default async function Header() {
       <nav className="w-full flex justify-center h-16">
         <div className="w-full flex justify-between items-center p-3 text-sm">
             <div>
-              <Link href="/" className='text-3xl'>
-                My Website
+              <Link href="/" className='text-3xl text-foreground'>
+                Godo
               </Link>
             </div>
             <div className="flex items-center gap-2">
