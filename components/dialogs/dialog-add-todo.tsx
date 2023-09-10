@@ -21,11 +21,8 @@ export default function DialogAddTodo() {
     );
 
     useEffect(() => {
-        if(!isMounted)
-        {
-            setMounted(true)
-        }
-    });
+        setMounted(true)
+    },[isMounted]);
 
     if(!isMounted)
     {
