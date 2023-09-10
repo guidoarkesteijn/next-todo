@@ -2,6 +2,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import React from 'react'
 import TodoItem from '../todo-item/todo-item'
+import { Database } from '@/lib/database.types'
 
 export const dynamic = 'force-dynamic'
 

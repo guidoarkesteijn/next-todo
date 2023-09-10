@@ -1,5 +1,6 @@
 'use server'
 
+import { Database } from "@/lib/database.types";
 import Todo from "@/models/Todo";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { Guid } from "guid-typescript";

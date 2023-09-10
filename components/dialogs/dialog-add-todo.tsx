@@ -1,6 +1,6 @@
 'use client'
 
-import { DialogDescription, DialogTrigger } from "@radix-ui/react-dialog";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { LucideLoader, LucidePlus, PlusIcon } from "lucide-react";
 import { experimental_useOptimistic, useEffect, useState } from "react";
