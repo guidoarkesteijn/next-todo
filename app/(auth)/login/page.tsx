@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { Auth } from "@supabase/auth-ui-react"
+import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa, ViewType } from "@supabase/auth-ui-shared";
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { 
-  useSessionContext, 
-  useSupabaseClient
-} from '@supabase/auth-helpers-react';
+import {
+  useSessionContext,
+  useSupabaseClient,
+} from "@supabase/auth-helpers-react";
 
 export default function Login() {
   const supabase = useSupabaseClient();
@@ -18,8 +18,8 @@ export default function Login() {
 
   useEffect(() => {
     const next = searchParams.get("register") ? "sign_up" : "sign_in";
-    setView(next)
-  }, [searchParams])
+    setView(next);
+  }, [searchParams]);
 
   useEffect(() => {
     console.log(session);
@@ -36,13 +36,16 @@ export default function Login() {
       magicLink={true}
       providers={[]}
       appearance={{
-        theme: ThemeSupa, 
+        theme: ThemeSupa,
         variables: {
           default: {
             colors: {
               inputText: "",
-              inputLabelText: ""
-            }
-      },}}}/>
-  )
+              inputLabelText: "",
+            },
+          },
+        },
+      }}
+    />
+  );
 }
