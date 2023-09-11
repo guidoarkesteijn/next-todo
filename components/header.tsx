@@ -6,7 +6,6 @@ import { SwitchModeToggle } from './switch-mode-toggle';
 import { buttonVariants } from './ui/button';
 import React from 'react';
 import { Separator } from './ui/separator';
-import { Database } from '@/lib/database.types';
 import { Avatar, AvatarFallback } from './ui/avatar';
 
 export default async function Header() {

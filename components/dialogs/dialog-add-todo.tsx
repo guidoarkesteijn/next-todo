@@ -1,13 +1,12 @@
 'use client'
 
-import { DialogDescription, DialogTrigger } from "@radix-ui/react-dialog";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { LucideLoader, LucidePlus, PlusIcon } from "lucide-react";
 import { experimental_useOptimistic, useEffect, useState } from "react";
 import { Button, buttonVariants } from "../ui/button";
 import { Input } from "../ui/input";
 import { Skeleton } from "../ui/skeleton";
-import React from "react";
 import { addTodo } from "@/actions/actions-todo";
 import { useToast } from "../ui/use-toast";
 

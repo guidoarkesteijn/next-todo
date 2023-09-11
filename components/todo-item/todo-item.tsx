@@ -20,11 +20,11 @@ export default function TodoItem(props : IProps) {
     const {toast} = useToast();
     const [optimisticComplete, toggleOptimisticComplete] = useOptimistic(
         props.is_complete || false,
-        (state, l) => state = !state
+        (state, value : boolean) => state = value
     );
     const [optimisticDelete, setOptimisticDelete] = useOptimistic(
         false,
-        (state, l) => state = true
+        (state, value : boolean) => state = value
     )
 
     async function deleteElement()

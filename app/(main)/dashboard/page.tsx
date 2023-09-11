@@ -1,7 +1,6 @@
-import AddButton from "@/components/add-button"
 import DialogAddTodo from "@/components/dialogs/dialog-add-todo"
 import TodoList from "@/components/server-component/page"
-import React, { Suspense } from "react"
+import { Suspense } from "react"
 import Loading from "./loading"
 
 export default async function Dashboard() {
