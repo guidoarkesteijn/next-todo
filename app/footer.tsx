@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 export default async function Footer() {
   return (
@@ -7,5 +7,5 @@ export default async function Footer() {
         <p>Guido Arkesteijn 2023 &copy;</p>
       </footer>
     </div>
-  )
+  );
 }

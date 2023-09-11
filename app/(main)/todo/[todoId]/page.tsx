@@ -1,10 +1,9 @@
-
 interface TodoPageProps {
-    params: {
-      todoId: string;
-    }
+  params: {
+    todoId: string;
+  };
 }
 
-export default function Todo({params} : TodoPageProps) {
-    return "Todo: " + params.todoId
+export default function Todo({ params }: TodoPageProps) {
+  return "Todo: " + params.todoId;
 }
