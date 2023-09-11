@@ -9,7 +9,8 @@ export default defineConfig({
     environment: 'jsdom',
     exclude: [
       ...configDefaults.exclude,
-      "e2e/*",
+      "e2e/**",
+      "components/**"
     ],
     coverage: {
       exclude: [
