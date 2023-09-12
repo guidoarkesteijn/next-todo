@@ -58,7 +58,8 @@ export default function DialogEditTodo(props: IProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger title="Edit"
+      <DialogTrigger
+        title="Edit"
         className={buttonVariants({ variant: "secondary", size: "icon" })}
       >
         <LucidePencil />
