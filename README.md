@@ -15,6 +15,7 @@ This app is a simple todo app. With support for register,login and creating,edit
 - Supabase: for database and user auth.
 - Vitest: for unit test and code coverage
 - Playwright: for e2e testing with Vercel deployments.
+- Codecov: for coverage reports
 
 ## Deployed To:
 
