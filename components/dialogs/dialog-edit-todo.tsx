@@ -58,7 +58,7 @@ export default function DialogEditTodo(props: IProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger
+      <DialogTrigger title="Edit"
         className={buttonVariants({ variant: "secondary", size: "icon" })}
       >
         <LucidePencil />
@@ -71,7 +71,7 @@ export default function DialogEditTodo(props: IProps) {
           <h3 className="text-xl">Title</h3>
           <Input name="title" defaultValue={props.title} required />
           <h3 className="text-xl"></h3>
-          <Button disabled={optimisticEdit}>
+          <Button title="Save" disabled={optimisticEdit}>
             {optimisticEdit ? (
               <>
                 <LucideLoader />

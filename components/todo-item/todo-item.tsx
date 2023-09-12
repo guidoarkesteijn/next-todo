@@ -91,6 +91,7 @@ export default function TodoItem(props: IProps) {
           onClick={deleteElement}
           variant="destructive"
           size="icon"
+          title="Delete"
         >
           {optimisticDelete ? (
             <LucideLoader2 className="animate-spin" />
