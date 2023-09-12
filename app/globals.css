@@ -58,14 +58,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-/* ENDLESS ROTATE */
-.lucide-loader {
-  animation: rotate 1.5s linear infinite; 
-}
-.lucide-loader2 {
-  animation: rotate 1.5s linear infinite; 
-}
-@keyframes rotate{
-  to{ transform: rotate(360deg); }
-}

@@ -11,7 +11,7 @@ import { Checkbox } from "../ui/checkbox";
 import { experimental_useOptimistic as useOptimistic } from "react";
 import { Button } from "../ui/button";
 import { completeTodo, deleteTodo } from "@/actions/actions-todo";
-import { LucideLoader, LucideTrash } from "lucide-react";
+import { LucideLoader2, LucideTrash } from "lucide-react";
 import { useToast } from "../ui/use-toast";
 
 interface IProps {
@@ -70,7 +70,7 @@ export default function TodoItem(props: IProps) {
             variant="destructive"
             size="icon"
           >
-            {optimisticDelete ? <LucideLoader /> : <LucideTrash />}
+            {optimisticDelete ? <LucideLoader2 className="animate-spin" /> : <LucideTrash />}
           </Button>
         </CardTitle>
         <CardDescription>{props.created_at.toLocaleString()}</CardDescription>
