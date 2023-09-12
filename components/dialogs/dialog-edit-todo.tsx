@@ -2,21 +2,28 @@
 
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
-import { LucideLoader, LucidePlus, PlusIcon } from "lucide-react";
+import { LucideLoader, LucidePencil } from "lucide-react";
 import { experimental_useOptimistic, useEffect, useState } from "react";
 import { Button, buttonVariants } from "../ui/button";
 import { Input } from "../ui/input";
-import { addTodo } from "@/actions/actions-todo";
+import { updateTodo } from "@/actions/actions-todo";
 import { useToast } from "../ui/use-toast";
 
-export default function DialogAddTodo() {
+interface IProps {
+  id: string;
+  title: string;
+}
+
+export default function DialogEditTodo(props: IProps) {
   const [isMounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
-  const [optimisticAdd, setOptimisticAdd] = experimental_useOptimistic(
+  const [optimisticEdit, setOptimisticEdit] = experimental_useOptimistic(
     false,
     (state, value: boolean) => (state = value),
   );
+
+  console.log("Title: " + props.title);
 
   useEffect(() => {
     setMounted(true);
@@ -24,26 +31,25 @@ export default function DialogAddTodo() {
 
   if (!isMounted) {
     return (
-      <Button disabled={true} variant="default">
-        Add
-        <PlusIcon />
+      <Button variant="secondary" size="icon" disabled={true}>
+        <LucidePencil />
       </Button>
     );
   }
 
-  async function addTodoElement(formdata: FormData): Promise<void> {
+  async function editTodoElement(formdata: FormData): Promise<void> {
     const title = formdata.get("title") as string;
 
-    setOptimisticAdd(true);
+    setOptimisticEdit(true);
 
-    const result = await addTodo(title);
+    const result = await updateTodo(props.id, title);
 
     if (!result) {
       return;
     }
 
     toast({
-      title: "Todo Added",
+      title: "Todo Updated",
       description: "Title: " + title,
     });
 
@@ -52,26 +58,28 @@ export default function DialogAddTodo() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className={buttonVariants({ variant: "default" })}>
-        Add
-        <PlusIcon />
+      <DialogTrigger
+        title="Edit"
+        className={buttonVariants({ variant: "secondary", size: "icon" })}
+      >
+        <LucidePencil />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add Todo</DialogTitle>
+          <DialogTitle>Edit Todo</DialogTitle>
         </DialogHeader>
-        <form className="flex flex-col gap-3" action={addTodoElement}>
+        <form className="flex flex-col gap-3" action={editTodoElement}>
           <h3 className="text-xl">Title</h3>
-          <Input name="title" required />
+          <Input name="title" defaultValue={props.title} required />
           <h3 className="text-xl"></h3>
-          <Button disabled={optimisticAdd}>
-            {optimisticAdd ? (
+          <Button title="Save" disabled={optimisticEdit}>
+            {optimisticEdit ? (
               <>
                 <LucideLoader />
               </>
             ) : (
               <>
-                Add <LucidePlus />
+                Save <LucidePencil />
               </>
             )}
           </Button>
