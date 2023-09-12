@@ -65,7 +65,7 @@ export default function DialogEditTodo(props: IProps) {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add Todo</DialogTitle>
+          <DialogTitle>Edit Todo</DialogTitle>
         </DialogHeader>
         <form className="flex flex-col gap-3" action={editTodoElement}>
           <h3 className="text-xl">Title</h3>
