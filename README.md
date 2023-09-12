@@ -2,10 +2,20 @@
 
 [![codecov](https://codecov.io/github/guidoarkesteijn/next-supabase/graphs/tree.svg?token=pmfZ9DqRHO)](https://codecov.io/github/guidoarkesteijn/next-supabase)
 
-# Supabase Starter
+# Todo App based on the Supabase template.
 
-This starter configures Supabase Auth to use cookies, making the user's session available throughout the entire Next.js app - Client Components, Server Components, Route Handlers, Server Actions and Middleware.
+This app is a simple todo app. With support for register,login and creating,editing,deleting Todos.
 
-## Deployed
+## Stack:
+- NPM
+- NextJS
+- Typescript
+- Tailwind
+- Vercel: for hosting the app.
+- Supabase: for database and user auth.
+- Vitest: for unit test and code coverage
+- Playwright: for e2e testing with Vercel deployments.
+
+## Deployed To:
 
 https://godo.guidoarkesteijn.com
