@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "../ui/card";
@@ -11,8 +12,9 @@ import { Checkbox } from "../ui/checkbox";
 import { experimental_useOptimistic as useOptimistic } from "react";
 import { Button } from "../ui/button";
 import { completeTodo, deleteTodo } from "@/actions/actions-todo";
-import { LucideLoader2, LucideTrash } from "lucide-react";
+import { LucideLoader2, LucidePen, LucideTrash } from "lucide-react";
 import { useToast } from "../ui/use-toast";
+import DialogEditTodo from "../dialogs/dialog-edit-todo";
 
 interface IProps {
   id: string;
@@ -64,14 +66,6 @@ export default function TodoItem(props: IProps) {
       <CardHeader>
         <CardTitle className="flex justify-between gap-3 break-all">
           {props.title}
-          <Button
-            disabled={optimisticDelete}
-            onClick={deleteElement}
-            variant="destructive"
-            size="icon"
-          >
-            {optimisticDelete ? <LucideLoader2 className="animate-spin" /> : <LucideTrash />}
-          </Button>
         </CardTitle>
         <CardDescription>{props.created_at.toLocaleString()}</CardDescription>
       </CardHeader>
@@ -90,6 +84,17 @@ export default function TodoItem(props: IProps) {
           </label>
         </div>
       </CardContent>
+      <CardFooter className="gap-3">
+        <DialogEditTodo id={props.id} title={props.title} />
+        <Button
+          disabled={optimisticDelete}
+          onClick={deleteElement}
+          variant="destructive"
+          size="icon"
+        >
+          {optimisticDelete ? <LucideLoader2 className="animate-spin" /> : <LucideTrash />}
+        </Button>
+      </CardFooter>
     </Card>
   );
 }

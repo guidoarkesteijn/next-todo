@@ -2,6 +2,7 @@
 
 import Todo from "@/models/Todo";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { PostgrestError } from "@supabase/supabase-js";
 import { Guid } from "guid-typescript";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
@@ -23,14 +24,25 @@ export async function addTodo(title : string) : Promise<boolean>
             .select()
             .single();
 
-        revalidatePath('/dashboard');
+        return handle(error);
+    }
 
-        if(error)
-        {
-            console.log(error);
-        }
+    return false;
+}
 
-        return error == null;
+export async function updateTodo(id : string, title : string) : Promise<boolean>
+{
+    const supabase = createServerActionClient<Database>({cookies});
+    const user = await supabase.auth.getUser();
+
+    if(user.data.user)
+    {
+        const {error} = await supabase
+            .from("todos")
+            .update({title: title})
+            .eq("id", id);
+            
+        return handle(error);
     }
 
     return false;
@@ -48,13 +60,7 @@ export async function deleteTodo(id : string) : Promise<boolean>
             .delete()
             .eq("id", id);
 
-        revalidatePath('/dashboard');
-
-        if(error)
-        {
-            console.log(error);
-        }
-        return error == null;
+        return handle(error);
     }
 
     return false;
@@ -72,14 +78,19 @@ export async function completeTodo(id : string, value : boolean) : Promise<boole
             .update({is_complete: value})
             .eq("id", id);
 
-        revalidatePath('/dashboard');
-
-        if(error)
-        {
-            console.log(error);
-        }
-        return error == null;
+        return handle(error);
     }
 
     return false;
+}
+
+function handle(error : PostgrestError | null) : boolean
+{
+    revalidatePath('/dashboard');
+
+    if(error)
+    {
+        console.log(error);
+    }
+    return error == null;
 }
