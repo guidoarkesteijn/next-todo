@@ -10,11 +10,11 @@ export default defineConfig({
     exclude: [
       ...configDefaults.exclude,
       "e2e/**",
-      "components/**"
+      "components/**" // exclude components folder due to unsupported useOptimistic hook used in todo-item with vitest.
     ],
     coverage: {
       exclude: [
-        "components/ui/**"
+        "components/ui/**" // exclude components folder due to unsupported useOptimistic hook used in todo-item with vitest.
       ],
     }
   },
