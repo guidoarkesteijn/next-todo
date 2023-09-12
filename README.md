@@ -8,4 +8,4 @@ This starter configures Supabase Auth to use cookies, making the user's session 
 
 ## Deployed
 
-[https://godo.guidoarkesteijn.com]
+https://godo.guidoarkesteijn.com
