@@ -12,7 +12,7 @@ import { Checkbox } from "../ui/checkbox";
 import { experimental_useOptimistic as useOptimistic } from "react";
 import { Button } from "../ui/button";
 import { completeTodo, deleteTodo } from "@/actions/actions-todo";
-import { LucideLoader2, LucidePen, LucideTrash } from "lucide-react";
+import { LucideLoader2, LucideTrash } from "lucide-react";
 import { useToast } from "../ui/use-toast";
 import DialogEditTodo from "../dialogs/dialog-edit-todo";
 
@@ -92,7 +92,11 @@ export default function TodoItem(props: IProps) {
           variant="destructive"
           size="icon"
         >
-          {optimisticDelete ? <LucideLoader2 className="animate-spin" /> : <LucideTrash />}
+          {optimisticDelete ? (
+            <LucideLoader2 className="animate-spin" />
+          ) : (
+            <LucideTrash />
+          )}
         </Button>
       </CardFooter>
     </Card>

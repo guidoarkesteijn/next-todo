@@ -6,7 +6,6 @@ import { LucideLoader, LucidePlus, PlusIcon } from "lucide-react";
 import { experimental_useOptimistic, useEffect, useState } from "react";
 import { Button, buttonVariants } from "../ui/button";
 import { Input } from "../ui/input";
-import { Skeleton } from "../ui/skeleton";
 import { addTodo } from "@/actions/actions-todo";
 import { useToast } from "../ui/use-toast";
 
@@ -25,12 +24,10 @@ export default function DialogAddTodo() {
 
   if (!isMounted) {
     return (
-      <Skeleton
-        className={buttonVariants({ variant: "ghost" }) + " text-muted"}
-      >
+      <Button disabled={true} variant="default">
         Add
-        <PlusIcon className="bg-muted" />
-      </Skeleton>
+        <PlusIcon />
+      </Button>
     );
   }
 

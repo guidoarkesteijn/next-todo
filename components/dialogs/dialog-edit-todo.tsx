@@ -2,22 +2,19 @@
 
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
-import { LucideDisc, LucideDisc2, LucideLoader, LucidePencil, LucidePlus, LucideSave, PencilIcon, PlusIcon } from "lucide-react";
+import { LucideLoader, LucidePencil } from "lucide-react";
 import { experimental_useOptimistic, useEffect, useState } from "react";
 import { Button, buttonVariants } from "../ui/button";
 import { Input } from "../ui/input";
-import { Skeleton } from "../ui/skeleton";
 import { updateTodo } from "@/actions/actions-todo";
 import { useToast } from "../ui/use-toast";
 
-interface IProps
-{
-  id : string
-  title : string
+interface IProps {
+  id: string;
+  title: string;
 }
 
-export default function DialogEditTodo(props : IProps) {
-  const [title] = useState(props.title);
+export default function DialogEditTodo(props: IProps) {
   const [isMounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
@@ -26,18 +23,17 @@ export default function DialogEditTodo(props : IProps) {
     (state, value: boolean) => (state = value),
   );
 
+  console.log("Title: " + props.title);
+
   useEffect(() => {
     setMounted(true);
   }, [isMounted]);
 
   if (!isMounted) {
     return (
-      <Skeleton
-        className={buttonVariants({ variant: "ghost", size: "icon" }) + " text-muted"}
-      >
-        Add
-        <PlusIcon className="bg-muted" />
-      </Skeleton>
+      <Button variant="secondary" size="icon" disabled={true}>
+        <LucidePencil />
+      </Button>
     );
   }
 
@@ -53,7 +49,7 @@ export default function DialogEditTodo(props : IProps) {
     }
 
     toast({
-      title: "Todo Added",
+      title: "Todo Updated",
       description: "Title: " + title,
     });
 
@@ -62,8 +58,10 @@ export default function DialogEditTodo(props : IProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className={buttonVariants({ variant: "secondary", size: "icon" })}>
-        <PencilIcon />
+      <DialogTrigger
+        className={buttonVariants({ variant: "secondary", size: "icon" })}
+      >
+        <LucidePencil />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -71,7 +69,7 @@ export default function DialogEditTodo(props : IProps) {
         </DialogHeader>
         <form className="flex flex-col gap-3" action={editTodoElement}>
           <h3 className="text-xl">Title</h3>
-          <Input name="title" defaultValue={title} required />
+          <Input name="title" defaultValue={props.title} required />
           <h3 className="text-xl"></h3>
           <Button disabled={optimisticEdit}>
             {optimisticEdit ? (
