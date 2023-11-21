@@ -4,7 +4,7 @@
 
 # Todo App based on the Supabase template.
 
-This app is a simple todo app. With support for register,login and creating,editing,deleting Todos.
+This app is a simple todo app. With support for register and login with creating, editing, and deleting Todos.
 
 ## Stack:
 - NPM
