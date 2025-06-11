@@ -3,7 +3,7 @@
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { LucideLoader, LucidePencil } from "lucide-react";
-import { experimental_useOptimistic, useEffect, useState } from "react";
+import { useOptimistic, useEffect, useState } from "react";
 import { Button, buttonVariants } from "../ui/button";
 import { Input } from "../ui/input";
 import { updateTodo } from "@/actions/actions-todo";
@@ -18,7 +18,7 @@ export default function DialogEditTodo(props: IProps) {
   const [isMounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
-  const [optimisticEdit, setOptimisticEdit] = experimental_useOptimistic(
+  const [optimisticEdit, setOptimisticEdit] = useOptimistic(
     false,
     (state, value: boolean) => (state = value),
   );
